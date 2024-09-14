@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ILocation } from "../interfaces/location.interface";
 import { IUser } from "../../user/interfaces/user.interface";
 import { LocationStatus } from "../enums/location-type.enum";
+import { IDevice } from "../../device/interfaces/device.interface";
 
 export class LocationResponseDto implements ILocation {
     @ApiProperty({ type: String, description: 'Location Id' })
@@ -18,6 +19,9 @@ export class LocationResponseDto implements ILocation {
 
     @ApiProperty({ type: String, description: 'location Users' })
     user: IUser;
+
+    @ApiProperty({ type: String, description: 'location Devices' })
+    devices: IDevice[];
 
 
 }

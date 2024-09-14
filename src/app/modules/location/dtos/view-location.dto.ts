@@ -8,6 +8,7 @@ export class ViewLocationDto {
             addres: data.address || null,
             status: data.status || null,
             user: data.user || [],
+            devices: data.devices || [],
         };
     }
 }
