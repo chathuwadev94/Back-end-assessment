@@ -6,6 +6,7 @@ import configuration from './config/system/configuration';
 import { TypeOrmConfigModule } from './config/type-orm/typeorm.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { LocationModule } from './modules/location/location.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { AuthModule } from './modules/auth/auth.module';
     }),
     TypeOrmConfigModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    LocationModule
   ],
   controllers: [AppController],
   providers: [AppService],

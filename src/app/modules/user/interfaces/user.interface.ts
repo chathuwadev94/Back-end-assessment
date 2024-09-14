@@ -1,4 +1,5 @@
 import { IBaseModel } from "src/app/core/repositories/interface/base.model.interface";
+import { ILocation } from "../../location/interfaces/location.interface";
 
 export interface IUser extends IBaseModel {
     firstName: string;
@@ -10,4 +11,5 @@ export interface IUser extends IBaseModel {
     userName?: string;
     password?: string;
     status: number;
+    locations: ILocation[];
 }

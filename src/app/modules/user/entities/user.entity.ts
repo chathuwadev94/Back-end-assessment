@@ -1,8 +1,9 @@
 
 import { BaseEntity } from "src/app/core/repositories/entity/base.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { UserStatus } from "../enums/status.enum";
 import { Gender } from "src/app/core/enums/gender.enum";
+import { Location } from "../../location/entities/location.entity";
 
 @Entity('user')
 @Unique(['nic'])
@@ -37,7 +38,8 @@ export class User extends BaseEntity {
     @Column({ type: 'enum', enum: UserStatus, default: UserStatus.PENDING })
     status: number;
 
-    // @OneToMany(() => Customer, cust => cust.user)
-    // customer: Customer[];
+    @OneToMany(() => Location, loc => loc.user)
+    locations: Location[];
+
 
 }
