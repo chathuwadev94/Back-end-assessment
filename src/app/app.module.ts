@@ -7,6 +7,7 @@ import { TypeOrmConfigModule } from './config/type-orm/typeorm.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { LocationModule } from './modules/location/location.module';
+import { DeviceModule } from './modules/device/device.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { LocationModule } from './modules/location/location.module';
     TypeOrmConfigModule,
     UserModule,
     AuthModule,
-    LocationModule
+    LocationModule,
+    DeviceModule
   ],
   controllers: [AppController],
   providers: [AppService],

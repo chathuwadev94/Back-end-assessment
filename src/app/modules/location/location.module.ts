@@ -23,5 +23,11 @@ import { UserModule } from '../user/user.module';
             useClass: LocationService
         }
     ],
+    exports: [
+        {
+            provide: LocationService.name,
+            useClass: LocationService
+        }
+    ]
 })
 export class LocationModule { }
