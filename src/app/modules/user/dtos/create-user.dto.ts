@@ -63,4 +63,6 @@ export class CreateUserDto {
         required: true,
     })
     password: string;
+
+    roles: string[];
 }

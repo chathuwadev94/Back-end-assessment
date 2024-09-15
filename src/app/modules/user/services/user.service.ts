@@ -3,6 +3,7 @@ import { IUserRepository, IUserRepositoryInterface } from '../interfaces/user-re
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { IUser } from '../interfaces/user.interface';
 import { hash } from 'bcrypt'
+import { AppRoles } from 'src/app/core/enums/role.enum';
 
 @Injectable()
 export class UserService {
@@ -19,6 +20,7 @@ export class UserService {
             throw new BadRequestException('User name already exist..')
         }
         userDto.password = await this.hashPassword(userDto.password);
+        userDto.roles = [AppRoles.DEFAULT];
         return await this.userRepo.create(userDto);
     }
 
@@ -38,5 +40,9 @@ export class UserService {
 
     async findById(id: number): Promise<IUser> {
         return await this.userRepo.getOneById(id);
+    }
+
+    async findUserWithLocationById(id: number): Promise<IUser> {
+        return await this.userRepo.findUserWithLocationById(id);
     }
 }

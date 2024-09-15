@@ -1,9 +1,10 @@
 import { BaseEntity } from "src/app/core/repositories/entity/base.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { DeviceStatus, DeviceType } from "../enums/device-type.enum";
 import { Location } from "../../location/entities/location.entity";
 
 @Entity('devices')
+@Unique(['serialNo'])
 export class Device extends BaseEntity {
 
     @PrimaryGeneratedColumn()

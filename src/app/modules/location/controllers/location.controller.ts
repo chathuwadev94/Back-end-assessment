@@ -17,6 +17,7 @@ export class LocationController {
         private readonly locationServ: LocationService
     ) { }
 
+    //Create Location
     @Post()
     @UseInterceptors(new TransformInterceptor(new ViewLocationDto()))
     @ApiOperation({ description: 'Create Location' })
@@ -28,6 +29,7 @@ export class LocationController {
     }
 
 
+    // Update Location
     @Put(':id')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(new TransformInterceptor(new ViewLocationDto()))
@@ -39,6 +41,7 @@ export class LocationController {
         return await this.locationServ.update(id, updateLocationDto);
     }
 
+    //  Get Location By Id
     @Get(':id')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(new TransformInterceptor(new ViewLocationDto()))
@@ -51,6 +54,7 @@ export class LocationController {
         return await this.locationServ.findById(id);
     }
 
+    // Delete Location
     @Delete(':id')
     @UseGuards(JwtAuthGuard)
     @ApiOperation({ description: 'Delete  Location' })

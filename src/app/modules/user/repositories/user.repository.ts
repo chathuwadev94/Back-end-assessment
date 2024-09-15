@@ -22,8 +22,8 @@ export class UserRepository
     return await this.getOne({ userName: userName });
   }
 
-  async findWithContactByUserName(userName: string): Promise<IUser> {
-    return this.userRepository.findOne({ where: { userName } });
+  async findUserWithLocationById(id: number): Promise<IUser> {
+    return await this.getOneById(id, {}, ['locations']);
   }
 
   async isNicAvailable(nic: string): Promise<boolean> {
@@ -39,12 +39,4 @@ export class UserRepository
     return await this.getAllwithPaginate({}, {}, [], {}, paginate);
   }
 
-  async findWithContactById(id: number): Promise<IUser> {
-    return await this.getOneById(id, {}, []);
-  }
-
-  async findUsersByNIC(nic: string, paginate: IPagination): Promise<IPaginatedEntity<IUser>> {
-    return await this.getAllwithPaginate({ nic: Like(`%${nic}%`) }, {}, [], {}, paginate);
-
-  }
 }

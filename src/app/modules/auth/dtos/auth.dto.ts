@@ -29,20 +29,3 @@ export class RefreshDto {
     refreshToken: string
 }
 
-
-export class ChangePasswordDto {
-
-    @ApiProperty({
-        type: String,
-        description: 'Current Password',
-        required: true
-    })
-    currentPassword: string;
-
-    @ApiProperty({
-        type: String,
-        description: 'New Password',
-        required: true
-    })
-    newPassword: string;
-}

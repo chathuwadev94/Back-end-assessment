@@ -8,6 +8,8 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { LocationModule } from './modules/location/location.module';
 import { DeviceModule } from './modules/device/device.module';
+import { AccessControlModule } from 'nest-access-control';
+import { roles } from './core/guards/app.role';
 
 @Module({
   imports: [
@@ -19,7 +21,8 @@ import { DeviceModule } from './modules/device/device.module';
     UserModule,
     AuthModule,
     LocationModule,
-    DeviceModule
+    DeviceModule,
+    AccessControlModule.forRoles(roles),
   ],
   controllers: [AppController],
   providers: [AppService],

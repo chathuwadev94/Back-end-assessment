@@ -11,7 +11,9 @@ export class ViewUserDto {
       email: data.email || null,
       address: data.address || null,
       status: data.status,
-      userName: data.userName || null
+      roles: data.roles || [],
+      userName: data.userName || null,
+      locations: data.locations || []
     };
   }
 }

@@ -20,13 +20,12 @@ export class LocationService {
             throw new BadRequestException('User not found');
         }
         let createDto: CreateLocationDto = { ...createLocationDto, user: user }
-        return await this.locationRepo.create(createLocationDto);
+        return await this.locationRepo.create(createDto);
     }
 
     async update(id: number, updateLocationDto: UpdateLocationDto): Promise<ILocation> {
         const location: ILocation = await this.locationRepo.getOneById(id);
-        const updateDto: UpdateLocationDto = { ...location, ...updateLocationDto }
-        return await this.locationRepo.updateAndGetEntity(id, updateDto);
+        return await this.locationRepo.updateAndGetEntity(location.id, updateLocationDto);
     }
 
     async findById(id: number): Promise<ILocation> {

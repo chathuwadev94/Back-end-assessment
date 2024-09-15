@@ -6,4 +6,5 @@ export const IUserRepositoryInterface = 'IUserRepository';
 export interface IUserRepository extends IBaseRepository<User> {
     findByUserName(userName: string): Promise<IUser>
     isNicAvailable(nic: string): Promise<boolean>
+    findUserWithLocationById(id: number): Promise<IUser>
 }

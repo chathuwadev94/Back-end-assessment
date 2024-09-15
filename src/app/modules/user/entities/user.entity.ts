@@ -4,9 +4,10 @@ import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColum
 import { UserStatus } from "../enums/status.enum";
 import { Gender } from "src/app/core/enums/gender.enum";
 import { Location } from "../../location/entities/location.entity";
+import { AppRoles } from "src/app/core/enums/role.enum";
 
 @Entity('user')
-@Unique(['nic'])
+@Unique(['nic', 'userName'])
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
@@ -34,6 +35,9 @@ export class User extends BaseEntity {
 
     @Column({ length: 200 })
     password: string;
+
+    @Column({ type: 'varchar', array: true })
+    roles: string[];
 
     @Column({ type: 'enum', enum: UserStatus, default: UserStatus.PENDING })
     status: number;

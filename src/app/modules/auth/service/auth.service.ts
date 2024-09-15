@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable, UnauthorizedException } 
 import { UserService } from '../../user/services/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { ChangePasswordDto, LoginDto, RefreshDto } from '../dtos/auth.dto';
+import { LoginDto, RefreshDto } from '../dtos/auth.dto';
 import { IUser } from '../../user/interfaces/user.interface';
 import { compare } from 'bcrypt'
 import configuration from 'src/app/config/system/configuration';
@@ -10,15 +10,7 @@ import configuration from 'src/app/config/system/configuration';
 @Injectable()
 @Injectable()
 export class AuthService {
-    passwordResetByAdmin(id: number): any {
-        throw new Error('Method not implemented.');
-    }
-    getUserById(id: any) {
-        throw new Error('Method not implemented.');
-    }
-    changePassword(id: any, changePasswordDto: ChangePasswordDto): any {
-        throw new Error('Method not implemented.');
-    }
+
     constructor(
         @Inject(UserService.name) private readonly userSer: UserService
         , private jwtServ: JwtService,
@@ -43,8 +35,10 @@ export class AuthService {
     private async getToken(user: IUser): Promise<any> {
         const payload = {
             userName: user.userName,
+            roles: user.roles,
             sub: {
                 id: user.id,
+                role: user.roles,
             }
         }
         return { ...user, accessToken: this.jwtServ.sign(payload), refreshToken: this.jwtServ.sign(payload, { expiresIn: configuration().jwt.refresh_jwt_expire_time }) }
@@ -61,4 +55,4 @@ export class AuthService {
         return await this.getToken(result)
     }
 }
-    
+

@@ -18,6 +18,7 @@ export class DeviceController {
         private readonly deviceServ: DeviceService
     ) { }
 
+    // Create device
     @Post()
     @UseInterceptors(new TransformInterceptor(new ViewDeviceDto()))
     @ApiOperation({ description: 'Create Device' })
@@ -28,7 +29,7 @@ export class DeviceController {
         return await this.deviceServ.create(createDeviceDto);
     }
 
-
+    // Update Device
     @Put(':id')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(new TransformInterceptor(new ViewDeviceDto()))
@@ -40,6 +41,7 @@ export class DeviceController {
         return await this.deviceServ.update(id, updateDeviceDto);
     }
 
+    // Get Device By Id
     @Get(':id')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(new TransformInterceptor(new ViewDeviceDto()))
@@ -52,11 +54,12 @@ export class DeviceController {
         return await this.deviceServ.findById(id);
     }
 
+    // Delete Device
     @Delete(':id')
     @UseGuards(JwtAuthGuard)
     @ApiOperation({ description: 'Delete  Device' })
     @HttpCode(200)
-    async deleteContact(@Param('id') id: number) {
+    async deleteDevice(@Param('id') id: number) {
         return await this.deviceServ.remove(id)
     }
 }

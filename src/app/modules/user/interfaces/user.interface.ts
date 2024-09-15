@@ -9,6 +9,7 @@ export interface IUser extends IBaseModel {
     email?: string;
     address: string;
     userName?: string;
+    roles?: string[];
     password?: string;
     status: number;
     locations: ILocation[];

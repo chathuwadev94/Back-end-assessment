@@ -13,19 +13,34 @@ import { ACGuard, UseRoles } from 'nest-access-control';
 @ApiTags('User')
 @ApiBearerAuth()
 export class UserController {
-    constructor(
-        @Inject(UserService.name) private readonly userSer: UserService
-      ) { }
-    
-      // Create User
-      @Post()
-      @UseInterceptors(new TransformInterceptor(new ViewUserDto()))
-      @ApiOperation({ description: 'Create User' })
-      @ApiCreatedResponse({ type: UserResponseDto, description: 'Create User' })
-      @ApiBody({ type: CreateUserDto })
-      @HttpCode(201)
-      async create(@Body() createUserDto: CreateUserDto) {
-        return await this.userSer.create(createUserDto);
-      }
-    
+  constructor(
+    @Inject(UserService.name) private readonly userSer: UserService
+  ) { }
+
+  // Create User
+  @Post()
+  @UseInterceptors(new TransformInterceptor(new ViewUserDto()))
+  @ApiOperation({ description: 'Create User' })
+  @ApiCreatedResponse({ type: UserResponseDto, description: 'Create User' })
+  @ApiBody({ type: CreateUserDto })
+  @HttpCode(201)
+  async create(@Body() createUserDto: CreateUserDto) {
+    return await this.userSer.create(createUserDto);
+  }
+
+  // Get User By Id
+  @Get(':id')
+  @UseGuards(JwtAuthGuard, ACGuard)
+  @UseRoles({
+    resource: UserController.name,
+    action: 'read',
+    possession: "own",
+  })
+  @UseInterceptors(new TransformInterceptor(new ViewUserDto()))
+  @ApiOperation({ description: 'Get  User by Id' })
+  @ApiCreatedResponse({ type: UserResponseDto, description: 'Get User by Id' })
+  async getUserById(@Param('id') id: number) {
+    return await this.userSer.findUserWithLocationById(id);
+  }
+
 }

@@ -20,6 +20,7 @@ export class DeviceService {
         if (!location) {
             throw new BadRequestException('Location not found..')
         }
+        // validate serialNo
         const createDto: CreateDeviceDto = { ...creatDeviceDto, location: location }
         return await this.deviceRepo.create(createDto);
     }
