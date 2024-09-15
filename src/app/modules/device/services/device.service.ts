@@ -5,6 +5,7 @@ import { IDevice } from '../interfaces/device.interface';
 import { ILocation } from '../../location/interfaces/location.interface';
 import { LocationService } from '../../location/services/location.service';
 import { UpdateDeviceDto } from '../dtos/update-device.dto';
+import configuration from 'src/app/config/system/configuration';
 
 @Injectable()
 export class DeviceService {
@@ -17,10 +18,16 @@ export class DeviceService {
 
     async create(creatDeviceDto: CreateDeviceDto): Promise<IDevice> {
         const location: ILocation = await this.locationServ.findById(creatDeviceDto.locationId);
-        if (!location) {
-            throw new BadRequestException('Location not found..')
+        const device: IDevice = await this.deviceRepo.getDeviceBySerialNo(creatDeviceDto.serialNo);
+        if (device) {
+            throw new BadRequestException('Device serial no already exist..');
         }
-        // validate serialNo
+        if (!location) {
+            throw new BadRequestException('Location not found..');
+        }
+        if (location.devices && location.devices.length >= parseInt(configuration().device.device_limit_count)) {
+            throw new BadRequestException('Location has 10 devices..')
+        }
         const createDto: CreateDeviceDto = { ...creatDeviceDto, location: location }
         return await this.deviceRepo.create(createDto);
     }

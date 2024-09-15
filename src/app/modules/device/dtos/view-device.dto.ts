@@ -7,7 +7,8 @@ export class ViewDeviceDto {
             serialNo: data.serialNo || null,
             type: data.type || null,
             status: data.status,
-            location: data.location || null
+            location: data.location || null,
+            image:data.image || null
         };
     }
 }

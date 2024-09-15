@@ -6,7 +6,7 @@ export interface ILocation extends IBaseModel {
     title: string;
     address: string;
     status: string;
-    user: IUser;
+    user?: IUser;
     devices?: IDevice[]
 
 }

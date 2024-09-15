@@ -19,4 +19,7 @@ export default () => ({
     expire_time: process.env.JWT_EXP_TIME || '120s',
     refresh_jwt_expire_time: process.env.REFRESH_JWT_EXP_TIME || '1d'
   },
+  device: {
+    device_limit_count:process.env.DEVICE_LIMIT_COUNT || '10',
+  }
 });

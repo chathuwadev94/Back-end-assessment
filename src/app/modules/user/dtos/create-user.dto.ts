@@ -64,5 +64,5 @@ export class CreateUserDto {
     })
     password: string;
 
-    roles: string[];
+    roles?: string[];
 }

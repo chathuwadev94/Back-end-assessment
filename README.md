@@ -19,55 +19,63 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+NestJS Location & Device Management API
+Project Overview
+This is a backend API for managing locations and associated devices. The project uses the NestJS framework for the backend and PostgreSQL as the database.
 
-## Installation
+Key Features:
+User Authentication: JWT-based user authentication (register, login, logout).
+Location Management: Create, update, view, and delete locations, 
+Device Management: Manage devices (create, update, delete) .
 
-```bash
-$ npm install
-```
+#Prerequisites
+Make sure you have the following installed:
 
-## Running the app
+Node.js (v14 or higher)
+Docker
+Docker Compose
 
-```bash
-# development
-$ npm run start
+#Clone Repository
+git clone https://github.com/chathuwadev94/Back-end-assessment.git
+cd Backe-end-assessment
 
-# watch mode
-$ npm run start:dev
+#Install Dependencies
+npm install
 
-# production mode
-$ npm run start:prod
-```
+#Create '.env' File and add below environment variables
 
-## Test
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DATABASE=assignment
+JWT_SECRET=bank-a123
+JWT_EXP_TIME=300000s
+REFRESH_JWT_EXP_TIME=1d
+RESET_PASSWORD=123456
 
-```bash
-# unit tests
-$ npm run test
+##Run Postgressql Database
+cd docker-compose
+docker-compose up -d
 
-# e2e tests
-$ npm run test:e2e
+##Run Migration file
+npm run typeorm migration:run
 
-# test coverage
-$ npm run test:cov
-```
+##Run Nestjs Server
+npm run start:dev
 
-## Support
+##Running the Application
+API Documentation: The API documentation is available at http://localhost:3000/v1/docs/# (Swagger UI).
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+##Applicaation Structure
+src/
+│
+├── auth/              # Authentication logic (JWT)
+├── locations/         # Location management (CRUD)
+├── devices/           # Device management (CRUD)
+├── users/             # User management (authentication)
+│
+├── app.module.ts      # Root module
+└── main.ts            # Application entry point

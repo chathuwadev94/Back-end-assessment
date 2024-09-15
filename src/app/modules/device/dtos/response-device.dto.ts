@@ -19,5 +19,7 @@ export class DeviceResponseDto implements IDevice {
     @ApiProperty({ type: String, description: 'Device Locations' })
     location: ILocation;
 
+    @ApiProperty({ type: String, description: 'Device Image' })
+    image: string;
 
 }

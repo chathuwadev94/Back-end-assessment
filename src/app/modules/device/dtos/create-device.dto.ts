@@ -15,7 +15,7 @@ export class CreateDeviceDto {
     @ApiProperty({
         enum: DeviceType,
         type: String,
-        description: 'Type of the user',
+        description: 'Type of the Device',
         required: false,
     })
     type: string;
@@ -23,17 +23,24 @@ export class CreateDeviceDto {
     @ApiProperty({
         enum: DeviceStatus,
         type: String,
-        description: 'Email of the user',
+        description: 'Status of Device',
         required: false,
     })
     status: string;
 
     @ApiProperty({
         type: Number,
-        description: 'Email of the user',
+        description: 'Location Id of the device',
         required: false,
     })
     locationId: number;
+
+    @ApiProperty({
+        type: Number,
+        description: 'Image of Device',
+        required: false,
+    })
+    image: string;
 
     location?: ILocation;
 

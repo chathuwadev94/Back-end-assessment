@@ -34,6 +34,13 @@ export class UpdateDeviceDto {
     })
     locationId?: number;
 
+    @ApiProperty({
+        type: String,
+        description: 'Image of  the device',
+        required: false,
+    })
+    image?: string;
+
     location?: ILocation;
 
 }

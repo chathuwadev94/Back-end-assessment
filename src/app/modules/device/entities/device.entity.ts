@@ -13,6 +13,9 @@ export class Device extends BaseEntity {
     @Column({ length: 100 })
     serialNo: string;
 
+    @Column({ length: 100 })
+    image: string;
+
     @Column({ type: 'enum', enum: DeviceType, default: DeviceType.POS })
     type: string;
 
